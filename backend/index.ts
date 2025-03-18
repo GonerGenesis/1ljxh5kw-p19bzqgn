@@ -3,22 +3,17 @@ import { remultExpress } from 'remult/remult-express';
 
 import { createPostgresDataProvider } from 'remult/postgres';
 import { SqlDatabase } from 'remult';
-import pg from 'pg';
 import { PostgresMock } from 'pgmock';
 
 import { Spacing } from '../shared/Spacing';
 import { repo } from 'remult';
 
-let connectionString;
 
-(async () => {
-  console.log('Starting Postgres mock server...');
+const mock = await PostgresMock.create();
+const connectionString = await mock.listen(0);
+console.log(`Postgres mock is now listening on ${connectionString}`);
+console.log(`To access: psql ${connectionString}`);
 
-  const mock = await PostgresMock.create();
-  connectionString = await mock.listen(0);
-  console.log(`Postgres mock is now listening on ${connectionString}`);
-  console.log(`To access: psql ${connectionString}`);
-})().catch(console.error);
 
 SqlDatabase.LogToConsole = true;
 
