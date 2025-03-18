@@ -6,7 +6,7 @@ export function Todo() {
   const [response, setResponse] = useState('');
   async function testTheApi() {
     try {
-      const result = await fetch('/api/tasks');
+      const result = await fetch('/api/spacing');
       if (!result.ok) {
         setResponse(`Error: ${result.status} ${result.statusText}`);
       }

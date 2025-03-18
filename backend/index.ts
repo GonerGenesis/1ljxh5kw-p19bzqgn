@@ -9,7 +9,7 @@ import { PostgresMock } from 'pgmock';
 import { Spacing } from '../shared/Spacing';
 import { repo } from 'remult';
 
-let connectionstring;
+let connectionString;
 
 (async () => {
   console.log('Starting Postgres mock server...');
@@ -31,7 +31,6 @@ export const api = remultExpress({
     connectionString,
   }),
   initApi: async () => {
-    console.log('moep');
     if ((await repo(Spacing).count()) == 0) {
       await repo(Spacing).insert({
         title: 'Task 1',
